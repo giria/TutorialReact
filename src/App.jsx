@@ -2,19 +2,31 @@ import { useState, useEffect } from "react"
 
 function App() {
   const [posts, setPosts] = useState([])
+  const [loading, setLoading] = useState(true)
+  const url = "https://jsonplaceholder.typicode.com/posts"
 
-  useEffect(() => {
-    fetch("https://jsonplaceholder.typicode.com/posts")
-      .then(res => res.json())
-      .then(data => setPosts(data))
-  }, [])
-
+ useEffect(() => {
+  fetch(url)
+    .then(res => res.json())
+    .then(data => {
+      setPosts(data)
+      setLoading(false)
+    })
+    .catch(error => {
+        console.error(error)
+        setLoading(false)
+      })
+}, [])
   return (
-    <ul>
-      {posts.map(post => (
-        <li key={post.id}>{post.title}</li>
-      ))}
-    </ul>
+    <>
+      {loading ? <p>Loading...</p> : (
+        <ul>
+          {posts.map(post => (
+            <li key={post.id}>{post.title}</li>
+          ))}
+        </ul>
+      )}
+    </>
   )
 }
 
