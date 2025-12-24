@@ -1,26 +1,18 @@
 import { useState, useEffect } from "react"
 
 function App() {
-  const [users, setUsers] = useState([])
+  const [posts, setPosts] = useState([])
 
- useEffect(() => {
-  const fetchUsers = async () => {
-    try {
-      const res = await fetch("https://jsonplaceholder.typicode.com/users")
-      const data = await res.json()
-      setUsers(data)
-    } catch (err) {
-      console.log(err)
-    }
-  }
-
-  fetchUsers()
-}, [])
+  useEffect(() => {
+    fetch("https://jsonplaceholder.typicode.com/posts")
+      .then(res => res.json())
+      .then(data => setPosts(data))
+  }, [])
 
   return (
     <ul>
-      {users.map(user => (
-        <li key={user.id}>{user.name}</li>
+      {posts.map(post => (
+        <li key={post.id}>{post.title}</li>
       ))}
     </ul>
   )
