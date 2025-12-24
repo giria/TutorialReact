@@ -1,4 +1,6 @@
 import { useState } from "react"
+import TodoInput from "./TodoInput"
+import TodoList from "./TodoList"
 
 function App() {
   const [todos, setTodos] = useState([])
@@ -18,23 +20,18 @@ function App() {
     <div style={{ padding: 20 }}>
       <h1>Todo App</h1>
 
-      <input
-        value={text}
-        onChange={(e) => setText(e.target.value)}
-        placeholder="Add todo"
+      <TodoInput
+        text={text}
+        setText={setText}
+        addTodo={addTodo}
       />
-      <button onClick={addTodo}>Add</button>
 
       {todos.length === 0 && <p>No todos yet</p>}
 
-      <ul>
-        {todos.map((todo, index) => (
-          <li key={index}>
-            {todo}
-            <button onClick={() => removeTodo(index)}>❌</button>
-          </li>
-        ))}
-      </ul>
+      <TodoList
+        todos={todos}
+        removeTodo={removeTodo}
+      />
     </div>
   )
 }
