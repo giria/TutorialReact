@@ -1,25 +1,14 @@
 import { useState } from "react"
 
 function App() {
-  const [name, setName] = useState("")
-  const [message, setMessage] = useState("")
-
-  const handleSubmit = (e) => {
-    e.preventDefault()
-    setMessage(`Welcome, ${name}`)
-  }
+  const [todos, setTodos] = useState(["Learn React", "Practice"])
 
   return (
-    <form onSubmit={handleSubmit}>
-      <input
-        value={name}
-        onChange={(e) => setName(e.target.value)}
-        placeholder="Enter your name"
-      />
-      <button type="submit">Submit</button>
-
-      <h1>{message}</h1>
-    </form>
+    <ul>
+      {todos.map((todo, index) => (
+        <li key={index}>{todo}</li>
+      ))}
+    </ul>
   )
 }
 
