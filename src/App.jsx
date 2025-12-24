@@ -1,16 +1,21 @@
 import { useState } from "react"
 
 function App() {
-  const [show, setShow] = useState(false)
+  const [count, setCount] = useState(0)
 
   return (
     <div>
-      <button onClick={() => setShow(!show)}>
-        Toggle Message
-      </button>
-
-      {show && <h1>Hello React!</h1>}
+      <h1>Count: {count}</h1>
+      <Child onIncrease={setCount} />
     </div>
+  )
+}
+
+function Child({ onIncrease }) {
+  return (
+    <button onClick={() => onIncrease(prev => prev + 1)}>
+      Increase
+    </button>
   )
 }
 
