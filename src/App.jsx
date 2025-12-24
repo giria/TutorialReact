@@ -1,9 +1,12 @@
-function App() {
-  const language = "React"
+function Welcome({ name, age }) {
+  return <h2>Name: {name} | Age: {age}</h2>
+}
 
+function App() {
   return (
     <div>
-      <h1>I am learning {language} 👋</h1>
+      <Welcome name="Joan" age={25} />
+      <Welcome name="Alex" age={30} />
     </div>
   )
 }
