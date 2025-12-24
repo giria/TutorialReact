@@ -1,12 +1,14 @@
-function Welcome({ name, age }) {
-  return <h2>Name: {name} | Age: {age}</h2>
-}
+import { useState } from "react"
 
 function App() {
+  const [count, setCount] = useState(0)
+
   return (
     <div>
-      <Welcome name="Joan" age={25} />
-      <Welcome name="Alex" age={30} />
+      <h1>Count: {count}</h1>
+      <button onClick={() => setCount(count + 1)}>
+        Increment
+      </button>
     </div>
   )
 }
