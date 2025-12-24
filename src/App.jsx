@@ -1,22 +1,17 @@
 import { useState } from "react"
 
 function App() {
-  const [todos, setTodos] = useState(["Apple", "Orange"])
+  const [show, setShow] = useState(false)
 
   return (
-    <>
     <div>
-    <ul>
-      {todos.map((todo, index) => (
-        <li key={index}>{todo}</li>
-      ))}
-    </ul>
-    </div>
-    <div>
-    <button onClick={() => setTodos([...todos, "Banana"])}>Add Banana</button>
-    </div>
-    </>
+      <button onClick={() => setShow(!show)}>
+        Toggle Message
+      </button>
 
+      {show && <h1>Hello React!</h1>}
+    </div>
   )
 }
+
 export default App
