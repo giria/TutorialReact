@@ -1,19 +1,15 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
 
 function App() {
   const [count, setCount] = useState(0)
 
-  return (
-    <div>
-      <h1>Count: {count}</h1>
-      <Child onIncrease={setCount} />
-    </div>
-  )
-}
+  useEffect(() => {
+    document.title = `Count: ${count}`
+     console.log("Value changed to", count)
+  }, [count])
 
-function Child({ onIncrease }) {
   return (
-    <button onClick={() => onIncrease(prev => prev + 1)}>
+    <button onClick={() => setCount(count + 1)}>
       Increase
     </button>
   )
