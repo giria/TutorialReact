@@ -1,7 +1,7 @@
 function TodoItem({ todo, onDelete }) {
   return (
     <li>
-      {todo}
+      {todo.text}
       <button onClick={onDelete}>Delete</button>
     </li>
   )
