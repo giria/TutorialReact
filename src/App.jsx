@@ -1,32 +1,22 @@
-import { useState, useEffect } from "react"
+import { useState } from "react"
 
 function App() {
-  const [posts, setPosts] = useState([])
-  const [loading, setLoading] = useState(true)
-  const url = "https://jsonplaceholder.typicode.com/posts"
+  const [todos, setTodos] = useState(["Apple", "Orange"])
 
- useEffect(() => {
-  fetch(url)
-    .then(res => res.json())
-    .then(data => {
-      setPosts(data)
-      setLoading(false)
-    })
-    .catch(error => {
-        console.error(error)
-        setLoading(false)
-      })
-}, [])
   return (
     <>
-      {loading ? <p>Loading...</p> : (
-        <ul>
-          {posts.map(post => (
-            <li key={post.id}>{post.title}</li>
-          ))}
-        </ul>
-      )}
+    <div>
+    <ul>
+      {todos.map((todo, index) => (
+        <li key={index}>{todo}</li>
+      ))}
+    </ul>
+    </div>
+    <div>
+    <button onClick={() => setTodos([...todos, "Banana"])}>Add Banana</button>
+    </div>
     </>
+
   )
 }
 
