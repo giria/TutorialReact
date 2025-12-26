@@ -1,47 +1,31 @@
-import { useState, useEffect } from "react"
-import TodoInput from "./TodoInput"
-import TodoList from "./TodoList"
+import { useEffect, useState } from "react";
 
-function App() {
-  const [todos, setTodos] = useState(() => {
-    const saved = localStorage.getItem("todos")
-    return saved ? JSON.parse(saved) : []
-  })
-
-  const [text, setText] = useState("")
-
-  const addTodo = () => {
-    if (text.trim() === "") return
-    setTodos([...todos, { text, completed: false }])
-    setText("")
-  }
-
-  const removeTodo = (index) => {
-    setTodos(todos.filter((_, i) => i !== index))
-  }
+export default function FileProcessing() {
+  const [count, setCount] = useState(1);
+  const total = 100;
 
   useEffect(() => {
-    localStorage.setItem("todos", JSON.stringify(todos))
-  }, [todos])
+    const interval = setInterval(() => {
+      setCount(prev => {
+        if (prev >= total) {
+          clearInterval(interval);
+          return total;
+        }
+        return prev + 1;
+      });
+    }, 50); // speed of counting (ms)
+
+    return () => clearInterval(interval);
+  }, []);
 
   return (
-    <div style={{ padding: 20 }}>
-      <h1>Todo App</h1>
+    <div style={{ padding: "20px", fontFamily: "sans-serif" }}>
+      <h2>Processing files...</h2>
+      <p>
+        {count} / {total} files processed
+      </p>
 
-      <TodoInput
-        text={text}
-        setText={setText}
-        addTodo={addTodo}
-      />
-
-      {todos.length === 0 && <p>No todos yet</p>}
-
-      <TodoList
-        todos={todos}
-        removeTodo={removeTodo}
-      />
+      <progress value={count} max={total} style={{ width: "100%" }} />
     </div>
-  )
+  );
 }
-
-export default App
