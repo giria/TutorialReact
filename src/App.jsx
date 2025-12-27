@@ -1,31 +1,25 @@
-import { useEffect, useState } from "react";
+import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 
-export default function FileProcessing() {
-  const [count, setCount] = useState(1);
-  const total = 100;
+function Home() {
+  return <h2>Home Page</h2>;
+}
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCount(prev => {
-        if (prev >= total) {
-          clearInterval(interval);
-          return total;
-        }
-        return prev + 1;
-      });
-    }, 50); // speed of counting (ms)
+function About() {
+  return <h2>About Page</h2>;
+}
 
-    return () => clearInterval(interval);
-  }, []);
-
+export default function App() {
   return (
-    <div style={{ padding: "20px", fontFamily: "sans-serif" }}>
-      <h2>Processing files...</h2>
-      <p>
-        {count} / {total} files processed
-      </p>
+    <BrowserRouter>
+      <nav>
+        <Link to="/">Home</Link> |{" "}
+        <Link to="/about">About</Link>
+      </nav>
 
-      <progress value={count} max={total} style={{ width: "100%" }} />
-    </div>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/about" element={<About />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
