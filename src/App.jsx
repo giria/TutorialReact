@@ -1,7 +1,7 @@
-import Profile from './Profile.jsx';
+import MyButton from './Button.jsx';
 
 export default function App() {
   return (
-    <Button />
+    <MyButton />
   );
 }
