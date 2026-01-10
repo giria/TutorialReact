@@ -2,11 +2,11 @@ export default function Profile() {
     return (
       <section>
         <h1>Hedy Lamarr's Profile</h1>
-        <img
+        <img className="avatar2"
           src="https://i.imgur.com/yXOvdOSs.jpg"
           alt="Hedy Lamarr"
-          width="200"
-          height="200"
+          width="100"
+          height="100"
         />
         <ul>
           <li>

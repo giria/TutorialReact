@@ -4,6 +4,11 @@
   padding: 2rem;
   text-align: center;
 }
+.avatar2 {
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid red;
+}
 
 .logo {
   height: 6em;

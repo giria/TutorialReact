@@ -12,7 +12,11 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-
+.avatar2 {
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid red;
+}
 a {
   font-weight: 500;
   color: #646cff;
